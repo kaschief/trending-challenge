@@ -10,17 +10,19 @@ class App extends Component {
     super(props);
     this.state = {
       searchTerm: "",
+      language: "",
+      period: "daily",
       repositories: []
       //displayedRepos: []
     };
   }
 
   componentDidMount() {
-    let language;
-    let period;
     axios
       .get(
-        `https://github-trending-api.now.sh/repositories?language=&since=daily`
+        `https://github-trending-api.now.sh/repositories?language=${
+          this.state.language
+        }&since=${this.state.period}`
       )
       .then(res => {
         this.setState({
