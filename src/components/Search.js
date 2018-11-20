@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { Input } from "reactstrap";
 
 export default class Search extends Component {
   render() {
     console.log(this.props);
     return (
       <div>
-        <input
+        <Input
           type="text"
           name="search"
           placeholder="Search Trending Repos"
