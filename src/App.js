@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Search from "./components/Search";
 import Grid from "./components/Grid";
+import axios from "axios";
 
 import "./App.css";
 
@@ -8,8 +9,24 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchTerm: ""
+      searchTerm: "",
+      repositories: []
+      //displayedRepos: []
     };
+  }
+
+  componentDidMount() {
+    let language;
+    let period;
+    axios
+      .get(
+        `https://github-trending-api.now.sh/repositories?language=&since=daily`
+      )
+      .then(res => {
+        this.setState({
+          repositories: res.data
+        });
+      });
   }
 
   inputHandle = event => {
@@ -28,7 +45,39 @@ class App extends Component {
           search={this.state.searchTerm}
           change={e => this.inputHandle(e)}
         />
-        <Grid />
+        {console.log(this.state.repositories)}
+        {this.state.searchTerm.length === 0 &&
+          this.state.repositories.map((r, i) => {
+            return (
+              <Grid
+                key={i}
+                description={r.description}
+                author={r.author}
+                language={r.language}
+                url={r.url}
+                stars={r.stars}
+              />
+            );
+          })}
+        {this.state.searchTerm.length !== 0 &&
+          this.state.repositories
+            .filter(r => {
+              return r.description
+                .toLowerCase()
+                .includes(this.state.searchTerm);
+            })
+            .map((r, i) => {
+              return (
+                <Grid
+                  key={i}
+                  description={r.description}
+                  author={r.author}
+                  language={r.language}
+                  url={r.url}
+                  stars={r.stars}
+                />
+              );
+            })}
       </div>
     );
   }
