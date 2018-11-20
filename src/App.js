@@ -10,30 +10,22 @@ class App extends Component {
     super(props);
     this.state = {
       searchTerm: "",
-      language: "",
-      period: "daily",
       repositories: []
       //displayedRepos: []
     };
   }
 
   componentDidMount() {
-    axios
-      .get(
-        `https://github-trending-api.now.sh/repositories?language=${
-          this.state.language
-        }&since=${this.state.period}`
-      )
-      .then(res => {
-        this.setState({
-          repositories: res.data
-        });
+    axios.get(`https://github-trending-api.now.sh/repositories?`).then(res => {
+      this.setState({
+        repositories: res.data
       });
+    });
+    console.log("LANGUAGE NOW IS", this.state.language);
   }
 
   inputHandle = event => {
     let newTerm = event.target.value;
-    console.log(newTerm);
     this.setState({
       searchTerm: newTerm
     });
