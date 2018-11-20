@@ -1,17 +1,7 @@
 import React, { Component } from "react";
-import {
-  Card,
-  Table,
-  CardText,
-  CardTitle,
-  CardBody,
-  CardSubtitle
-} from "reactstrap";
+import { Card, CardText, CardTitle, CardBody, CardSubtitle } from "reactstrap";
 
 export default class Grid extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div>

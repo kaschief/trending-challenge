@@ -11,7 +11,6 @@ class App extends Component {
     this.state = {
       searchTerm: "",
       repositories: []
-      //displayedRepos: []
     };
   }
 
@@ -21,7 +20,6 @@ class App extends Component {
         repositories: res.data
       });
     });
-    console.log("LANGUAGE NOW IS", this.state.language);
   }
 
   inputHandle = event => {
@@ -39,7 +37,7 @@ class App extends Component {
           search={this.state.searchTerm}
           change={e => this.inputHandle(e)}
         />
-        {console.log(this.state.repositories)}
+
         {this.state.searchTerm.length === 0 &&
           this.state.repositories.map((r, i) => {
             return (

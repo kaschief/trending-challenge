@@ -3,7 +3,6 @@ import { Input } from "reactstrap";
 
 export default class Search extends Component {
   render() {
-    console.log(this.props);
     return (
       <div>
         <Input
