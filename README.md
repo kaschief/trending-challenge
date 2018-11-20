@@ -1,8 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+GitHubt Trending Challenge for Keylight
 
-## Available Scripts
-
-In the project directory, you can run:
+Launch the project via
 
 ### `npm start`
 
